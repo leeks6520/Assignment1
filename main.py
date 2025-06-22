@@ -50,7 +50,7 @@ class SandwichMachine:
     false otherwise"""
 
     def check_resources(self, ingredients):
-        """Returns True when order can be made, False if ingredients are insufficient."""
+        """Returns True when user's order can be made, False if ingredients are insufficient."""
         for item, needed in ingredients.items():
             available = self.machine_resources.get(item, 0)
             if needed > available:
@@ -64,10 +64,11 @@ class SandwichMachine:
         """Returns the total calculated from coins inserted.
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
         print("\nPlease insert coins.")
-        quarters = int(input("How many quarters?: "))
-        dimes = int(input("How many dimes?: "))
-        nickels = int(input("How many nickels?: "))
-        pennies = int(input("How many pennies?: "))
+        quarters = int(input("How many quarters ($0.25)?: "))
+        dimes = int(input("How many dimes ($0.10)?: "))
+        nickels = int(input("How many nickels? ($0.05): "))
+        pennies = int(input("How many pennies? ($0.01): "))
+        """sum the total amount of money inserted"""
         total = (0.25 * quarters + 0.10 * dimes + 0.05 * nickels + 0.01 * pennies)
         return total
 
