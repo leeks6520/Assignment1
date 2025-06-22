@@ -107,12 +107,15 @@ while True:
     if choice == "off": #exit machine
         print("Turning off the machine. Goodbye.")
         break
-
+""" if the users choice matches the recipes, attempt to make that sandwich"""
     if choice in recipes:
         recipe = recipes[choice]
+        """check if enough ingredients"""
         if machine.check_resources(recipe["ingredients"]):
             payment = machine.process_coins()
+            """process the payment"""
             if machine.transaction_result(payment, recipe["cost"]):
                 machine.make_sandwich(choice, recipe["ingredients"])
     else:
+        """handle invalid selection"""
         print("Invalid selection. Please choose small, medium, large, or off. \n")
