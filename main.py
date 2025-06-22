@@ -97,7 +97,9 @@ class SandwichMachine:
 machine = SandwichMachine(resources)
 
 while True:
+    """ask the user what they'd like"""
     choice = input("What would you like? (small/medium/large/off): ").lower()
+    """ if user chooses 'off', shut down the machine"""
     if choice == "off": #exit machine
         print("Turning off the machine. Goodbye.")
         break
