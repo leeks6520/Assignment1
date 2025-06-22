@@ -1,4 +1,5 @@
 ### Data ###
+"""A simple terminal-based sandwich maker to make ham sandwiches. Incorporated classes, functions, and user interaction."""
 
 recipes = {
     "small": {
@@ -49,12 +50,12 @@ class SandwichMachine:
     return true if all ingredients are available,
     false otherwise"""
 
-    def check_resources(self, ingredients):
+    def check_resources(self, needed_ingredients):
         """Returns True when user's order can be made, False if ingredients are insufficient."""
-        for item, needed in ingredients.items():
+        for item, amount_needed in needed_ingredients.items():
             available = self.machine_resources.get(item, 0)
-            if needed > available:
-                print(f"Sorry, not enough {item}. ")
+            if amount_needed > available:
+                print(f"Sorry, not enough {item}. You need {amount_needed} ")
                 return False
         return True
 
@@ -72,10 +73,10 @@ class SandwichMachine:
         total = (0.25 * quarters + 0.10 * dimes + 0.05 * nickels + 0.01 * pennies)
         return total
 
-    def transaction_result(self, coins, cost):
+    def transaction_result(self, payment, cost):
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
-        if coins >= cost:
+        if payment >= cost:
             change = payment - cost
             if change > 0:
                 print(f"Here is ${change:.2f}.")
@@ -84,11 +85,13 @@ class SandwichMachine:
         else:
             print("Sorry, that is not enough coins. Money refunded. \n")
             return False
-    def make_sandwich(self, sandwich_size, order_ingredients):
+    def make_sandwich(self, size, ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
-        for item, amount in order_ingredients.items():
+        for item, amount in ingredients.items():
             self.machine_resources[item] -= amount
+        print(f"Here is your {size} ham sandwich. Enjoy!\n")
+
 
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
